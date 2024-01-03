@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "kMVKyyoZSorBXLVNT9EmM61BHuJJulbHZEEWPQr9Aj47nk+Bw4bNV5IMCtB+Vw4hs5g/ZqI9VvPtgNV4IF1zIw==",
+  "dgSpecHash": "KJ9CTtI1/Huecn0x+XpICSs26/NKua3zaOBOA1d8ZpdOL4rt7v9RzGk8m3Mlp2SZP3eJtkrlxVFOKCv7b76GeQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\kazuo\\source\\repos\\FiapStore\\FiapStore\\FiapStore.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\kazuo\\.nuget\\packages\\dapper\\2.1.28\\dapper.2.1.28.nupkg.sha512",
     "C:\\Users\\kazuo\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.0\\microsoft.aspnetcore.openapi.7.0.0.nupkg.sha512",
     "C:\\Users\\kazuo\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\kazuo\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",

@@ -1,4 +1,4 @@
-﻿using FiapStore.Entidade;
+﻿using FiapStore.Entity;
 using FiapStore.Interface;
 using FiapStore.Repository;
 using Microsoft.AspNetCore.Mvc;

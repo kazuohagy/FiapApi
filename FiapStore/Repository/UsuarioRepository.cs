@@ -1,41 +1,55 @@
-﻿using FiapStore.Entidade;
+﻿using FiapStore.Entity;
 using FiapStore.Interface;
 using System.Linq;
 
 namespace FiapStore.Repository
 {
-    public class UsuarioRepository : IUsuarioRepository
+    public class UsuarioRepository : DapperREpository<Usuario>,IUsuarioRepository
     {
-
-        private IList<Usuario> _usuario = new List<Usuario>();
-
-        public IList<Usuario> ObterTodosUsuarios()
+        public UsuarioRepository(IConfiguration configuration) : base(configuration)
         {
-            return _usuario;
         }
 
-        public Usuario ObterUsuarioPorId(int id)
-        {
-            return _usuario.FirstOrDefault(Usuario => Usuario.Id == id);
-        }
-        public void CadastrarUsuarioPorId(Usuario usuario)
-        {
-            _usuario.Add(usuario);
-        }
         public void AlterarUsuario(Usuario usuario)
         {
-            var usuarioParaAlterar = ObterUsuarioPorId(usuario.Id);
-            if (usuarioParaAlterar != null)
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                usuarioParaAlterar.Nome = usuario.Nome;
+                connection.Execute("UPDATE Usuario SET Nome = @Nome WHERE Id = @Id", usuario);
+            }
+        }
+
+        public void CadastrarUsuarioPorId(Usuario usuario)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Execute("INSERT INTO Usuario (Nome) VALUES (@Nome)", usuario);
             }
         }
 
         public void DeletarUsuario(int id)
         {
-            _usuario.Remove(ObterUsuarioPorId(id));
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Execute("DELETE FROM Usuario WHERE Id = @Id", new { Id = id });
+            }
         }
 
+        public Usuario ObterUsuarioPorId(int id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                return connection.Query<Usuario>("SELECT * FROM Usuario WHERE Id = @Id", new { Id = id }).FirstOrDefault();
+            }
+        }
 
-    }
+        public IList<Usuario> ObterTodosUsuarios()
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                return connection.Query<Usuario>("SELECT * FROM Usuario").ToList();
+            }
+
+
+
+        }
 }
